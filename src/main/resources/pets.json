@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Max",
+    "birthDate": "2020-05-15",
+    "breed": "Labrador Retriever",
+    "description": "Friendly and energetic",
+    "size": "Large",
+    "adopted": false
+  },
+  {
+    "name": "Whiskers",
+    "birthDate": "2021-02-20",
+    "breed": "Siamese",
+    "description": "Playful and affectionate",
+    "isIndoor": true,
+    "adopted": false
+  },
+  {
+    "name": "Bugs",
+    "birthDate": "2022-01-10",
+    "breed": "Holland Lop",
+    "description": "Gentle and curious",
+    "furType": "Short",
+    "adopted": false
+  }
+] 

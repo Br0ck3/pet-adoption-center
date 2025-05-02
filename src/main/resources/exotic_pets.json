@@ -1,0 +1,16 @@
+[
+  {
+    "animalName": "Spike",
+    "dateOfBirth": "2019-08-12",
+    "animalType": "Iguana",
+    "specialRequirements": "Requires UV lighting and high humidity",
+    "isReserved": false
+  },
+  {
+    "animalName": "Polly",
+    "dateOfBirth": "2020-03-25",
+    "animalType": "Parrot",
+    "specialRequirements": "Needs daily interaction and mental stimulation",
+    "isReserved": false
+  }
+] 
