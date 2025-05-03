@@ -87,6 +87,3 @@ src/
 
 ## Author
 - Brock Burchett - Sole developer and maintainer
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
