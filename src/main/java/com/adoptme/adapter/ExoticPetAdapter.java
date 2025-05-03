@@ -19,6 +19,7 @@ public class ExoticPetAdapter extends Pet {
         super(
             exoticAnimal.getAnimalName(),
             exoticAnimal.getDateOfBirth(),
+            "Exotic",
             exoticAnimal.getAnimalType(),
             exoticAnimal.getSpecialRequirements()
         );
@@ -32,7 +33,17 @@ public class ExoticPetAdapter extends Pet {
      */
     @Override
     public String getSpecies() {
-        return "Exotic " + exoticAnimal.getAnimalType();
+        return "Exotic";
+    }
+
+    /**
+     * Gets the breed of the exotic pet.
+     *
+     * @return The exotic animal's type
+     */
+    @Override
+    public String getBreed() {
+        return exoticAnimal.getAnimalType();
     }
 
     /**
@@ -57,6 +68,15 @@ public class ExoticPetAdapter extends Pet {
      */
     @Override
     public String toString() {
-        return super.toString() + " (Exotic)";
+        return String.format("%s (Exotic - %s)", getName(), getBreed());
+    }
+
+    /**
+     * Gets the underlying exotic animal.
+     *
+     * @return The exotic animal
+     */
+    public ExoticAnimal getExoticAnimal() {
+        return exoticAnimal;
     }
 } 

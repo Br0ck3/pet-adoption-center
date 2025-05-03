@@ -5,26 +5,37 @@ import java.time.LocalDate;
 /**
  * Abstract class representing a pet in the adoption system.
  * Implements Comparable to allow sorting pets by name.
+ * 
+ * This is the base class for all pets in our system.
+ * It was created as part of our CS3330 project.
  */
 public abstract class Pet implements Comparable<Pet> {
-    private String name;
-    private LocalDate birthDate;
-    private String breed;
+    private final String name;
+    private final String species;
+    private final LocalDate birthDate;
+    private final String breed;
     private boolean adopted;
-    private String description;
+    private final String description;
+    // private double weight;
+    // private String favoriteFood;
+    // private Image photo;
 
     /**
-     * Constructor for creating a new pet.
+     * Creates a new pet.
      *
-     * @param name        The pet's name
-     * @param birthDate   The pet's birth date
-     * @param breed       The pet's breed
+     * @param name The pet's name
+     * @param birthDate The pet's date of birth
+     * @param species The pet's species
+     * @param breed The pet's breed
      * @param description A description of the pet
      * @throws IllegalArgumentException if any required field is null or empty
      */
-    protected Pet(String name, LocalDate birthDate, String breed, String description) {
+    protected Pet(String name, LocalDate birthDate, String species, String breed, String description) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Pet name cannot be empty");
+        }
+        if (species == null || species.trim().isEmpty()) {
+            throw new IllegalArgumentException("Species cannot be empty");
         }
         if (birthDate == null) {
             throw new IllegalArgumentException("Birth date cannot be null");
@@ -37,6 +48,7 @@ public abstract class Pet implements Comparable<Pet> {
         }
 
         this.name = name.trim();
+        this.species = species.trim();
         this.birthDate = birthDate;
         this.breed = breed.trim();
         this.description = description.trim();
@@ -53,9 +65,18 @@ public abstract class Pet implements Comparable<Pet> {
     }
 
     /**
-     * Gets the pet's birth date.
+     * Gets the pet's species.
      *
-     * @return The pet's birth date
+     * @return The pet's species
+     */
+    public String getSpecies() {
+        return species;
+    }
+
+    /**
+     * Gets the pet's date of birth.
+     *
+     * @return The pet's date of birth
      */
     public LocalDate getBirthDate() {
         return birthDate;
@@ -80,9 +101,9 @@ public abstract class Pet implements Comparable<Pet> {
     }
 
     /**
-     * Checks if the pet has been adopted.
+     * Checks if the pet is adopted.
      *
-     * @return true if the pet has been adopted, false otherwise
+     * @return true if the pet is adopted, false otherwise
      */
     public boolean isAdopted() {
         return adopted;
@@ -97,15 +118,20 @@ public abstract class Pet implements Comparable<Pet> {
         if (adopted) {
             throw new IllegalStateException("Pet is already adopted");
         }
-        this.adopted = true;
+        adopted = true;
     }
 
     /**
-     * Gets the species of the pet.
+     * Marks the pet as available.
      *
-     * @return The pet's species
+     * @throws IllegalStateException if the pet is not adopted
      */
-    public abstract String getSpecies();
+    public void markAsAvailable() {
+        if (!adopted) {
+            throw new IllegalStateException("Pet is not adopted");
+        }
+        adopted = false;
+    }
 
     /**
      * Compares this pet with another pet by name.
@@ -116,18 +142,17 @@ public abstract class Pet implements Comparable<Pet> {
      */
     @Override
     public int compareTo(Pet other) {
-        return this.name.compareToIgnoreCase(other.name);
+        return name.compareTo(other.name);
     }
 
     /**
      * Returns a string representation of the pet.
+     * I made this method to help with debugging and display.
      *
      * @return A string containing the pet's details
      */
     @Override
     public String toString() {
-        return String.format("%s (%s) - %s, Born: %s, %s",
-                name, getSpecies(), breed, birthDate,
-                adopted ? "Adopted" : "Available");
+        return String.format("%s (%s - %s)", name, species, breed);
     }
 } 

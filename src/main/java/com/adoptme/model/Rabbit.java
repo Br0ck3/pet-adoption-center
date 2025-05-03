@@ -3,27 +3,24 @@ package com.adoptme.model;
 import java.time.LocalDate;
 
 /**
- * Represents a rabbit in the adoption system.
+ * Represents a rabbit in the pet adoption system.
+ * Rabbits have specific attributes like fur type.
  */
 public class Rabbit extends Pet {
     private final String furType;
 
     /**
-     * Constructor for creating a new rabbit.
+     * Creates a new rabbit.
      *
-     * @param name        The rabbit's name
-     * @param birthDate   The rabbit's birth date
-     * @param breed       The rabbit's breed
+     * @param name The rabbit's name
+     * @param birthDate The rabbit's date of birth
+     * @param breed The rabbit's breed
+     * @param furType The rabbit's fur type
      * @param description A description of the rabbit
-     * @param furType     The type of fur the rabbit has
-     * @throws IllegalArgumentException if furType is null or empty
      */
-    public Rabbit(String name, LocalDate birthDate, String breed, String description, String furType) {
-        super(name, birthDate, breed, description);
-        if (furType == null || furType.trim().isEmpty()) {
-            throw new IllegalArgumentException("Rabbit fur type cannot be empty");
-        }
-        this.furType = furType.trim();
+    public Rabbit(String name, LocalDate birthDate, String breed, String furType, String description) {
+        super(name, birthDate, "Rabbit", breed, description);
+        this.furType = furType;
     }
 
     /**
@@ -36,22 +33,12 @@ public class Rabbit extends Pet {
     }
 
     /**
-     * Gets the species of the rabbit.
-     *
-     * @return "Rabbit"
-     */
-    @Override
-    public String getSpecies() {
-        return "Rabbit";
-    }
-
-    /**
      * Returns a string representation of the rabbit.
      *
      * @return A string containing the rabbit's details
      */
     @Override
     public String toString() {
-        return super.toString() + ", Fur Type: " + furType;
+        return String.format("%s (Rabbit - %s, %s)", getName(), getBreed(), furType);
     }
 } 

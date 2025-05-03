@@ -3,27 +3,24 @@ package com.adoptme.model;
 import java.time.LocalDate;
 
 /**
- * Represents a dog in the adoption system.
+ * Represents a dog in the pet adoption system.
+ * Dogs have specific attributes like size and breed.
  */
 public class Dog extends Pet {
     private final String size;
 
     /**
-     * Constructor for creating a new dog.
+     * Creates a new dog.
      *
-     * @param name        The dog's name
-     * @param birthDate   The dog's birth date
-     * @param breed       The dog's breed
+     * @param name The dog's name
+     * @param birthDate The dog's date of birth
+     * @param breed The dog's breed
+     * @param size The dog's size (Small, Medium, Large)
      * @param description A description of the dog
-     * @param size        The dog's size (Small, Medium, Large)
-     * @throws IllegalArgumentException if size is null or empty
      */
-    public Dog(String name, LocalDate birthDate, String breed, String description, String size) {
-        super(name, birthDate, breed, description);
-        if (size == null || size.trim().isEmpty()) {
-            throw new IllegalArgumentException("Dog size cannot be empty");
-        }
-        this.size = size.trim();
+    public Dog(String name, LocalDate birthDate, String breed, String size, String description) {
+        super(name, birthDate, "Dog", breed, description);
+        this.size = size;
     }
 
     /**
@@ -35,23 +32,8 @@ public class Dog extends Pet {
         return size;
     }
 
-    /**
-     * Gets the species of the dog.
-     *
-     * @return "Dog"
-     */
-    @Override
-    public String getSpecies() {
-        return "Dog";
-    }
-
-    /**
-     * Returns a string representation of the dog.
-     *
-     * @return A string containing the dog's details
-     */
     @Override
     public String toString() {
-        return super.toString() + ", Size: " + size;
+        return String.format("%s (Dog - %s, %s)", getName(), getBreed(), size);
     }
 } 

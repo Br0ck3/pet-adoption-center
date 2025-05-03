@@ -3,42 +3,33 @@ package com.adoptme.model;
 import java.time.LocalDate;
 
 /**
- * Represents a cat in the adoption system.
+ * Represents a cat in the pet adoption system.
+ * Cats have specific attributes like indoor/outdoor preference.
  */
 public class Cat extends Pet {
     private final boolean isIndoor;
 
     /**
-     * Constructor for creating a new cat.
+     * Creates a new cat.
      *
-     * @param name        The cat's name
-     * @param birthDate   The cat's birth date
-     * @param breed       The cat's breed
+     * @param name The cat's name
+     * @param birthDate The cat's date of birth
+     * @param breed The cat's breed
+     * @param isIndoor Whether the cat is indoor-only
      * @param description A description of the cat
-     * @param isIndoor    Whether the cat is an indoor cat
      */
-    public Cat(String name, LocalDate birthDate, String breed, String description, boolean isIndoor) {
-        super(name, birthDate, breed, description);
+    public Cat(String name, LocalDate birthDate, String breed, boolean isIndoor, String description) {
+        super(name, birthDate, "Cat", breed, description);
         this.isIndoor = isIndoor;
     }
 
     /**
-     * Checks if the cat is an indoor cat.
+     * Checks if the cat is indoor-only.
      *
-     * @return true if the cat is an indoor cat, false otherwise
+     * @return true if the cat is indoor-only, false otherwise
      */
     public boolean isIndoor() {
         return isIndoor;
-    }
-
-    /**
-     * Gets the species of the cat.
-     *
-     * @return "Cat"
-     */
-    @Override
-    public String getSpecies() {
-        return "Cat";
     }
 
     /**
@@ -48,6 +39,6 @@ public class Cat extends Pet {
      */
     @Override
     public String toString() {
-        return super.toString() + ", " + (isIndoor ? "Indoor" : "Outdoor") + " cat";
+        return String.format("%s (Cat - %s, %s)", getName(), getBreed(), isIndoor ? "Indoor" : "Outdoor");
     }
 } 
